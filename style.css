@@ -1,0 +1,52 @@
+body {
+
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+
+
+#medalButton {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+#medalButton {
+    background-color: red;
+}
+
+#recordsButton {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+#recordsButton {
+    background-color: green;
+}
+
+#returnButton {
+    background-color: blueviolet;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+#returnButton {
+    background-color: blueviolet;
+}
+
+ul {
+    display: table; 
+    margin: 0 auto;
+    text-align: left;
+}
