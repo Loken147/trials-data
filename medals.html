@@ -2,31 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="medals.css">
     <title>Trials Medals</title>
     <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
-    
 </head>
 
 <body>
-    <h1 style="color:gray">Trials Medals</h1>
-    <a id="returnButton" href="index.html">Return</a>
-    <p>List of all diamonds on every track in the game.</p>
-    <p>- I will add a searching feature later.</p>
-    <p>- Platinums will be added later</p>
-    <p>- Other Trials games might be added aswell.</p>
-    <p></p>
-    <p>Last Update: 11 January 2022</p>
-    <p></p>
-    <h3 style="color:green">Trials Rising Diamonds</h3>
-    <p>
-    </p>
-    <h3>- League A</h3>
-    <ul>
-        <li>Braking Bad: 167</li>
-        <li>Happy Camper: 97</li>
-        <li>Yellowstone Caldera: 623</li>
-    </ul>
+
+    <div id="divOne">
+        <h1 style="color:gray">Trials Medals</h1>
+        <p>List of all diamonds on every track in the game. Use the search bar if you want too find a track quickly. You can use the filters aswell.</p>
+        <p>Last Update: 11 January 2022</p>
+        <a id="returnButton" href="index.html">Return</a>
+        </div>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        cursor: pointer;
+        color:#fff;
+            }
+</style>
+
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            <input id="search-input" class="form-control" type="text">
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-striped">
+    <tr  class="bg-info">
+        <th  class="bg-info" data-coltrack="track" data-order="desc">Track &#9650</th>
+        <th  data-coltrack="diamonds" data-order="desc">Diamonds &#9650</th>
+        <th  data-coltrack="time" data-order="desc">Time &#9650</th>
+    </tr>
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+
+<script>
+var myArray = [
+    {'track':'Braking Bad', 'diamonds':'69', 'time':'45.000'},
+    {'track':'Happy Camper', 'diamonds':'219', 'time':'32.300'},
+    {'track':'Yellowstone Caldera', 'diamonds':'1837', 'time':'1.08.500'},
+    {'track':'Inferno 5', 'diamonds':'13', 'time':'1.00.500'},
+    {'track':'Ruined Run', 'diamonds':'27', 'time':'35.000'},
+    {'track':'Ski or Dont', 'diamonds':'72', 'time':'43.100'},
+]
+
+        
+$('#search-input').on('keyup', function(){
+        var value = $(this).val()
+        console.log('Value:', value)
+        var data = searchTable(value, myArray)
+        buildTable(data)
+    })
+
+
+buildTable(myArray)
+
+function searchTable(value, data){
+        var filteredData = []
+
+        for (var i = 0; i < data.length; i++){
+            value = value.toLowerCase()
+            var track = data[i].track.toLowerCase()
+
+            if (track.includes(value)) {
+                filteredData.push(data[i])
+            }
+        }
+
+        return filteredData
+    }
+
+ $('th').on('click', function(){
+     var column = $(this).data('coltrack')
+     var order = $(this).data('order')
+     var text = $(this).html()
+     text = text.substring(0, text.length - 1);
+     
+     
+     
+     if (order == 'desc'){
+        myArray = myArray.sort((a, b) => a[column] > b[column] ? 1 : -1)
+        $(this).data("order","asc");
+        text += '&#9660'
+     }else{
+        myArray = myArray.sort((a, b) => a[column] < b[column] ? 1 : -1)
+        $(this).data("order","desc");
+        text += '&#9650'
+     }
+
+    $(this).html(text)
+    buildTable(myArray)
+    })
+
+
+   
+ 
+    
+function buildTable(data){
+    var table = document.getElementById('myTable')
+    table.innerHTML = ''
+    for (var i = 0; i < data.length; i++){
+        var coltrack = `track-${i}`
+        var coldiamonds = `diamonds-${i}`
+        var coltime = `time-${i}`
+
+        var row = `<tr>
+                        <td>${data[i].track}</td>
+                        <td>${data[i].diamonds}</td>
+                        <td>${data[i].time}</td>
+                   </tr>`
+        table.innerHTML += row
+    }
+}
+
+</script>
 
 </body>
 </html>
