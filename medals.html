@@ -1,156 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="medals.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Trials Medals</title>
-    <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/logo.ico" />
 </head>
 
 <body>
 
-    <div id="divOne">
-        <h2 style="color:#fff">Trials Medals</h2>
-        <p style="color:#fff">List of how many diamonds on every track and the time required to achieve the diamond medal.</p>
-        <p style="color:#fff">Use the search bar to find a track quickly or use the filter.</p>
-        <p style="color:#fff">Last Update: 11 January 2022</p>
-        <a id="returnButton" href="index.html">Return</a>
-        </div>
- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <div id="pageInfo">
+        <h2>Trials Medals</h2>
+        <p>List of how many diamonds on every track and the time required to achieve the diamond
+            medal.</p>
+        <p>Use the search bar to find a track quickly or use the filter.</p>
+        <p>Last Update: 11 January 2022</p>
+        <a class="button" id="returnButton" href="index.html">Return</a>
+    </div>
 
-<div class="row">
-    <div class="col">
-        <div class="card card-body">
-            <input id="search-input" class="form-control" type="text">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+                <input id="search-input" class="form-control" type="text">
+            </div>
         </div>
     </div>
-</div>
 
 
-<table class="table table-striped">
-    <tr  class="bg-info" id="tableHeader">
-        <th  class="bg-info" data-coltrack="track" data-order="desc">Track &#9650</th>
-        <th  data-coltrack="diamonds" data-order="desc">Diamond Count &#9650</th>
-        <th  data-coltrack="time" data-order="desc">Time &#9650</th>
-    </tr>
-    <tbody id="myTable">
-        
-    </tbody>
-</table>
+    <table class="table table-striped">
+        <tr class="bg-info" id="tableHeader">
+            <th class="bg-info" data-coltrack="track" data-order="desc">Track &#9650</th>
+            <th data-coltrack="diamonds" data-order="desc">Diamond Count &#9650</th>
+            <th data-coltrack="time" data-order="desc">Time &#9650</th>
+        </tr>
+        <tbody id="myTable">
+
+        </tbody>
+    </table>
 
 
-<script>
-var myArray = [
-    // Trials Tracks
-    // American Rookies
-    {'track':'Braking Bad', 'diamonds':'273', 'time':'45.000'},
-    {'track':'Happy Camper', 'diamonds':'192', 'time':'32.300'},
-    {'track':'Yellowstone Caldera', 'diamonds':'655', 'time':'01.08.850'},
-    {'track':'Canyon Crash', 'diamonds':'531', 'time':'46.450'},
-    {'track':'Lights, Camera, Action!', 'diamonds':'214', 'time':'50.650'},
-    {'track':'Hard Hat Zone', 'diamonds':'316', 'time':'41.950'},
-    {'track':'Lumbering On', 'diamonds':'246', 'time':'36.700'},
-    {'track':'MX And The City', 'diamonds':'603', 'time':'45.750'},
-    // Euro Starter Cup
-    {'track':'True Scotsman', 'diamonds':'293', 'time':'35.950'},
-    {'track':'Tilting at Windmills', 'diamonds':'938', 'time':'49.950'},
-    {'track':'Lynx World', 'diamonds':'176', 'time':'01.08.500'},
-    {'track':'El Tomate', 'diamonds':'666', 'time':'44.650'},
-    {'track':'Medieval Flair', 'diamonds':'206', 'time':'54.500'},
-    {'track':'Below Bucharest', 'diamonds':'243', 'time':'47.600'},
-    {'track':'The Flying Finn', 'diamonds':'321', 'time':'45.000'},
-    {'track':'Nyet Problem', 'diamonds':'658', 'time':'47.800'},
-    // Asian Novice Class
-    {'track':'Beach Bum', 'diamonds':'407', 'time':'55.950'},
-    {'track':'Grave of Giants', 'diamonds':'425', 'time':'01.08.000'},
-    {'track':'Balloons over Bagan', 'diamonds':'1405', 'time':'40.450'},
-    {'track':'Ship It', 'diamonds':'266', 'time':'43.040'},
-    {'track':'Chinese Cliffs', 'diamonds':'299', 'time':'50.500'},
-    {'track':'Thousand-Cloud Village', 'diamonds':'344', 'time':'59.950'},
-    {'track':'Spirit of the Mountain', 'diamonds':'301', 'time':'39.750'},
-    {'track':'Wheels of Steel', 'diamonds':'237', 'time':'46.110'},
-    // Asian Masters
-    {'track':'Ruined Run', 'diamonds':'240', 'time':'35.000'},
-    {'track':'Firebase Faceplant', 'diamonds':'656', 'time':'45.900'},
-    {'track':'Siberian Express', 'diamonds':'1405', 'time':'43.680'},
-    {'track':'A Pretty Good Wall', 'diamonds':'266', 'time':'59.800'},
-    {'track':'Vietnam Vaults', 'diamonds':'299', 'time':'56.200'},
-    {'track':'Angkor What?', 'diamonds':'344', 'time':'01:05.550'},
-    {'track':'Siberian Skies', 'diamonds':'301', 'time':'27.000'},
-]
-
-        
-$('#search-input').on('keyup', function(){
-        var value = $(this).val()
-        console.log('Value:', value)
-        var data = searchTable(value, myArray)
-        buildTable(data)
-    })
+    <script>
+        var myArray = [
+            // Trials Tracks
+            // American Rookies
+            { 'track': 'Braking Bad', 'diamonds': '273', 'time': '45.000' },
+            { 'track': 'Happy Camper', 'diamonds': '192', 'time': '32.300' },
+            { 'track': 'Yellowstone Caldera', 'diamonds': '655', 'time': '01.08.850' },
+            { 'track': 'Canyon Crash', 'diamonds': '531', 'time': '46.450' },
+            { 'track': 'Lights, Camera, Action!', 'diamonds': '214', 'time': '50.650' },
+            { 'track': 'Hard Hat Zone', 'diamonds': '316', 'time': '41.950' },
+            { 'track': 'Lumbering On', 'diamonds': '246', 'time': '36.700' },
+            { 'track': 'MX And The City', 'diamonds': '603', 'time': '45.750' },
+            // Euro Starter Cup
+            { 'track': 'True Scotsman', 'diamonds': '293', 'time': '35.950' },
+            { 'track': 'Tilting at Windmills', 'diamonds': '938', 'time': '49.950' },
+            { 'track': 'Lynx World', 'diamonds': '176', 'time': '01.08.500' },
+            { 'track': 'El Tomate', 'diamonds': '666', 'time': '44.650' },
+            { 'track': 'Medieval Flair', 'diamonds': '206', 'time': '54.500' },
+            { 'track': 'Below Bucharest', 'diamonds': '243', 'time': '47.600' },
+            { 'track': 'The Flying Finn', 'diamonds': '321', 'time': '45.000' },
+            { 'track': 'Nyet Problem', 'diamonds': '658', 'time': '47.800' },
+            // Asian Novice Class
+            { 'track': 'Beach Bum', 'diamonds': '407', 'time': '55.950' },
+            { 'track': 'Grave of Giants', 'diamonds': '425', 'time': '01.08.000' },
+            { 'track': 'Balloons over Bagan', 'diamonds': '1405', 'time': '40.450' },
+            { 'track': 'Ship It', 'diamonds': '266', 'time': '43.040' },
+            { 'track': 'Chinese Cliffs', 'diamonds': '299', 'time': '50.500' },
+            { 'track': 'Thousand-Cloud Village', 'diamonds': '344', 'time': '59.950' },
+            { 'track': 'Spirit of the Mountain', 'diamonds': '301', 'time': '39.750' },
+            { 'track': 'Wheels of Steel', 'diamonds': '237', 'time': '46.110' },
+            // Asian Masters
+            { 'track': 'Ruined Run', 'diamonds': '240', 'time': '35.000' },
+            { 'track': 'Firebase Faceplant', 'diamonds': '656', 'time': '45.900' },
+            { 'track': 'Siberian Express', 'diamonds': '1405', 'time': '43.680' },
+            { 'track': 'A Pretty Good Wall', 'diamonds': '266', 'time': '59.800' },
+            { 'track': 'Vietnam Vaults', 'diamonds': '299', 'time': '56.200' },
+            { 'track': 'Angkor What?', 'diamonds': '344', 'time': '01:05.550' },
+            { 'track': 'Siberian Skies', 'diamonds': '301', 'time': '27.000' },
+        ]
 
 
-buildTable(myArray)
+        $('#search-input').on('keyup', function () {
+            var value = $(this).val()
+            console.log('Value:', value)
+            var data = searchTable(value, myArray)
+            buildTable(data)
+        })
 
-function searchTable(value, data){
-        var filteredData = []
 
-        for (var i = 0; i < data.length; i++){
-            value = value.toLowerCase()
-            var track = data[i].track.toLowerCase()
+        buildTable(myArray)
 
-            if (track.includes(value)) {
-                filteredData.push(data[i])
+        function searchTable(value, data) {
+            var filteredData = []
+
+            for (var i = 0; i < data.length; i++) {
+                value = value.toLowerCase()
+                var track = data[i].track.toLowerCase()
+
+                if (track.includes(value)) {
+                    filteredData.push(data[i])
+                }
             }
+
+            return filteredData
         }
 
-        return filteredData
-    }
-
- $('th').on('click', function(){
-     var column = $(this).data('coltrack')
-     var order = $(this).data('order')
-     var text = $(this).html()
-     text = text.substring(0, text.length - 1);
-     
-     
-     
-     if (order == 'desc'){
-        myArray = myArray.sort((a, b) => a[column] > b[column] ? 1 : -1)
-        $(this).data("order","asc");
-        text += '&#9660'
-     }else{
-        myArray = myArray.sort((a, b) => a[column] < b[column] ? 1 : -1)
-        $(this).data("order","desc");
-        text += '&#9650'
-     }
-
-    $(this).html(text)
-    buildTable(myArray)
-    })
+        $('th').on('click', function () {
+            var column = $(this).data('coltrack')
+            var order = $(this).data('order')
+            var text = $(this).html()
+            text = text.substring(0, text.length - 1);
 
 
-   
- 
-    
-function buildTable(data){
-    var table = document.getElementById('myTable')
-    table.innerHTML = ''
-    for (var i = 0; i < data.length; i++){
-        var coltrack = `track-${i}`
-        var coldiamonds = `diamonds-${i}`
-        var coltime = `time-${i}`
 
-        var row = `<tr>
+            if (order == 'desc') {
+                myArray = myArray.sort((a, b) => a[column] > b[column] ? 1 : -1)
+                $(this).data("order", "asc");
+                text += '&#9660'
+            } else {
+                myArray = myArray.sort((a, b) => a[column] < b[column] ? 1 : -1)
+                $(this).data("order", "desc");
+                text += '&#9650'
+            }
+
+            $(this).html(text)
+            buildTable(myArray)
+        })
+
+
+
+
+
+        function buildTable(data) {
+            var table = document.getElementById('myTable')
+            table.innerHTML = ''
+            for (var i = 0; i < data.length; i++) {
+                var coltrack = `track-${i}`
+                var coldiamonds = `diamonds-${i}`
+                var coltime = `time-${i}`
+
+                var row = `<tr>
                         <td>${data[i].track}</td>
                         <td>${data[i].diamonds}</td>
                         <td>${data[i].time}</td>
                    </tr>`
-        table.innerHTML += row
-    }
-}
+                table.innerHTML += row
+            }
+        }
 
-</script>
+    </script>
 
 </body>
+
 </html>
