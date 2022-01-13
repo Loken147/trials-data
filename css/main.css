@@ -26,6 +26,11 @@ body {
     display: inline-block;
 }
 
+#search-input {
+    color: white;
+    text-align: center;
+}
+
 #medalButton {
     background-color: #0F7173;
 }

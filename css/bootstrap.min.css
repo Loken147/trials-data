@@ -1607,11 +1607,11 @@ pre code {
 	}
 }
 
+/* Table Width and Margins*/
 .table {
-	width: 98%;
+	width: 100%;
 	margin-bottom: 1rem;
 	color: #212529;
-    margin: 0 auto;
 }
 
 .table td,
@@ -1959,8 +1959,8 @@ pre code {
 	font-size: 1rem;
 	font-weight: 400;
 	line-height: 1.5;
-	color: #495057;
-	background-color: #fff;
+	color: #272932;
+	background-color: #272932;
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
@@ -4786,10 +4786,8 @@ input[type=submit].btn-block {
 	flex-direction: column;
 	min-width: 0;
 	word-wrap: break-word;
-	background-color: #fff;
+	background-color: #272932;
 	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, .125);
-	border-radius: .25rem
 }
 
 .card>hr {
