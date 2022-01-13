@@ -7,6 +7,70 @@ body {
     
 }
 
+/* === BASE HEADING === */ 
+
+h1 {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #080808;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+  
+h1 span {
+    display: block;
+    font-size: 0.5em;
+    line-height: 1.3;
+}
+
+h1 em {
+    font-style: normal;
+    font-weight: 600;
+}
+/* === HEADING STYLE #2 === */
+
+.two h1 {
+    text-transform: capitalize;
+}
+
+.two h1:before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    content: "";
+    background-color: #F4E409;
+}
+  
+.two h1 span {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 3em;
+    padding-left: 0.25em;
+    color: rgba(0, 0, 0, 0.4);
+    padding-bottom: 10px;
+
+}
+
+.alt-two h1 {
+    text-align:center;
+    margin-bottom: 20px;
+}
+
+.alt-two h1:before {
+    left:50%; margin-left:-30px;
+    
+}
+
+
 #pageInfo {
 
     padding-top: 10px;
@@ -15,44 +79,33 @@ body {
     background-color: #272932;
     padding-bottom: 10px;
     color: white;
+
 }
 
-#pageInfo .button {
+#pageInfo a {
     color: white;
     padding: 10px 20px;
     text-align: center;
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
+    margin-bottom: 20px;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-	color: red;
-	opacity: 1; /* Firefox */
-  }
-  
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: red;
-  }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-	color: red;
-  }
+#pageInfo a:hover {
+    text-decoration: underline;
+    text-decoration-color: #F4E409;
+    text-decoration-thickness: 5px;
+}
+
+#pageInfo a.active {
+    text-decoration: underline !important;
+    text-decoration-color: #F4E409;
+    text-decoration-thickness: 5px;
+}
 
 #search-input {
-    color: white;
     text-align: center;
+    background-color: #272932;
+    color: white;
 }
-
-#medalButton {
-    background-color: #0F7173;
-}
-
-#editorButton {
-    background-color: black;
-}
-
-#returnButton {
-    background-color: #0F7173;
-}
-

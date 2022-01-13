@@ -6,6 +6,7 @@
  */
 
  :root {
+    --placeholdercolor: #F4E409; /*Changes placeholder color, line 1980 */
 	--blue: #007bff;
 	--indigo: #6610f2;
 	--purple: #6f42c1;
@@ -1618,7 +1619,7 @@ pre code {
 .table th {
 	padding: .75rem;
 	vertical-align: top;
-	border-top: 1px solid #dee2e6
+	/* border-top: 1px solid #dee2e6 */
 }
 
 .table thead th {
@@ -1951,9 +1952,11 @@ pre code {
 	border: 0
 }
 
+@import "//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css";
+
 .form-control {
 	display: block;
-	width: 100%;
+	width: 25%;
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem .75rem;
 	font-size: 1rem;
@@ -1964,7 +1967,8 @@ pre code {
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
 	border-radius: .25rem;
-	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	margin: 0 auto;
 }
 
 @media (prefers-reduced-motion:reduce) {
@@ -1986,29 +1990,41 @@ pre code {
 	box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
 }
 
+/* Handle icon when clicking search box  */
+.form-control:focus::placeholder {
+	color:transparent;
+
+}
+
 .form-control::-webkit-input-placeholder {
-	color: #6c757d;
-	opacity: 1
+	color: var(--placeholdercolor);
+	opacity: 1;
+	font-family: FontAwesome;
+	
 }
 
 .form-control::-moz-placeholder {
-	color: #6c757d;
-	opacity: 1
+	color: var(--placeholdercolor);
+	opacity: 1;
+	font-family: FontAwesome;
 }
 
 .form-control:-ms-input-placeholder {
-	color: #6c757d;
-	opacity: 1
+	color: var(--placeholdercolor);
+	opacity: 1;
+	font-family: FontAwesome;
 }
 
 .form-control::-ms-input-placeholder {
-	color: #6c757d;
-	opacity: 1
+	color: var(--placeholdercolor);
+	opacity: 1;
+	font-family: FontAwesome;
 }
 
 .form-control::placeholder {
-	color: #6c757d;
-	opacity: 1
+	color: var(--placeholdercolor);
+	opacity: 1;
+	font-family: FontAwesome;
 }
 
 .form-control:disabled,
@@ -2019,7 +2035,7 @@ pre code {
 
 select.form-control:focus::-ms-value {
 	color: #495057;
-	background-color: #fff
+	background-color: #272932
 }
 
 .form-control-file,
@@ -4808,7 +4824,7 @@ input[type=submit].btn-block {
 .card-body {
 	-ms-flex: 1 1 auto;
 	flex: 1 1 auto;
-	padding: 1.25rem
+	padding-bottom: 20px;
 }
 
 .card-title {
