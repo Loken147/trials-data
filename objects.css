@@ -1,24 +1,18 @@
-body {
+#divOne {
 
     text-align: center;
     font-family: Arial, sans-serif;
-    background-color: #011C27;
 }
 
-
-.button {
+#returnButton {
+    background-color: black;
     color: white;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-}
-
-#redButton {
-    background-color: #f44336;
-}
-
-#blackButton {
+  }
+  
+#returnButton {
     background-color: black;
 }
-  

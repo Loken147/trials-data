@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="objects.css">
+    <title>Trials Editor Objects</title>
+    <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
+</head>
+
+<body>
+
+    <div id="divOne">
+        <b><h2 style="color:grey">Trials Editor Objects</h2></b>
+        <p>List of all Editor Objects, credit goes to nannerdw for making the list.</p>
+        <p>Search any object name. Every object has a search term that might make finding a specific object easier.</p>
+        <p>*Not all objects are added and not all details are added to current objects.</p>
+        <a id="returnButton" href="index.html">Return</a>
+        </div>
+ 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <style>
+            th{ 
+                cursor: pointer;
+                color:whitesmoke;
+                background-color: black;
+                
+            }
+        
+        </style>
+        
+        <div class="row">
+            <div class="col">
+                <div class="card card-body">
+                    <input id="search-input" class="form-control" type="text">
+                </div>
+            </div>
+        </div>
+        
+        
+        <table class="table table-striped">
+            <tr  class="bg-info">
+                <th  class="bg-info" data-colsearchterm="searchterm" data-order="desc">Search Term</th>
+                <th  data-colsearchterm="set" data-order="desc">Set</th>
+                <th  data-colsearchterm="object" data-order="desc">Object</th>
+                <th  data-colsearchterm="variation" data-order="desc">Variations</th>
+                <th  data-colsearchterm="textures" data-order="desc">Textures/Materials</th>
+                <th  data-colsearchterm="shape" data-order="desc">Shape</th>
+                <th  data-colsearchterm="categories" data-order="desc">Categories</th>
+            </tr>
+            <tbody id="myTable">
+                
+            </tbody>
+        </table>
+        
+        
+        <script>
+        var myArray = [
+            // Editor Objects
+            // Tools - Common
+            {'searchterm':'Delete, Remove [Area clear]', 'set':'Tools - Common - General', 'object':'Area clear', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'Environment [Area condition]', 'set':'Tools - Common - General', 'object':'Area condition', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Area selector]', 'set':'Tools - Common - General', 'object':'Area selector', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Checkpoint]', 'set':'Tools - Common - General', 'object':'Checkpoint', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'checkered flag [Checkpoint]', 'set':'Tools - Common - General', 'object':'Checkpoint', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Checkpoint]', 'set':'Tools - Common - General', 'object':'Checkpoint', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'rumble [Controller Vibration]', 'set':'Tools - Common - General', 'object':'Controller Vibration', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Custom Camera]', 'set':'Tools - Common - General', 'object':'Custom Camera', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'Stickers [Decal]', 'set':'Tools - Common - General', 'object':'Decal', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Dummy Object]', 'set':'Tools - Common - General', 'object':'Dummy Object', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Emitter]', 'set':'Tools - Common - General', 'object':'Emitter', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Fail Area]', 'set':'Tools - Common - General', 'object':'Fail Area', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'[Object pointer]', 'set':'Tools - Common - General', 'object':'Object pointer', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'Spline, Curve [Path Follower Event]', 'set':'Tools - Common - General', 'object':'Path Follower Event', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'Spline, Curve [Path Node]', 'set':'Tools - Common - General', 'object':'Path Node', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'Teleport [Portal]', 'set':'Tools - Common - General', 'object':'Portal', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+            {'searchterm':'Decal, terrain height modification, terraforming [Terrain Stamp]', 'set':'Tools - Common - General', 'object':'Terrain Stamp', 'variation':'', 'textures':'', 'shape':'', 'categories':''},
+        ]
+        
+                
+        $('#search-input').on('keyup', function(){
+                var value = $(this).val()
+                console.log('Value:', value)
+                var data = searchTable(value, myArray)
+                buildTable(data)
+            })
+        
+        
+        buildTable(myArray)
+        
+        function searchTable(value, data){
+                var filteredData = []
+        
+                for (var i = 0; i < data.length; i++){
+                    value = value.toLowerCase()
+                    var searchterm = data[i].searchterm.toLowerCase()
+        
+                    if (searchterm.includes(value)) {
+                        filteredData.push(data[i])
+                    }
+                }
+        
+                return filteredData
+            }
+        
+         $('th').on('click', function(){
+             var column = $(this).data('colsearchterm')
+             var order = $(this).data('order')
+             var text = $(this).html()
+             text = text.substring(0, text.length - 1);
+             
+             
+             
+             if (order == 'desc'){
+                myArray = myArray.sort((a, b) => a[column] > b[column] ? 1 : -1)
+                $(this).data("order","asc");
+                text += '&#9660'
+             }else{
+                myArray = myArray.sort((a, b) => a[column] < b[column] ? 1 : -1)
+                $(this).data("order","desc");
+                text += '&#9650'
+             }
+        
+            $(this).html(text)
+            buildTable(myArray)
+            })
+        
+        
+           
+         
+            
+        function buildTable(data){
+            var table = document.getElementById('myTable')
+            table.innerHTML = ''
+            for (var i = 0; i < data.length; i++){
+                var colsearchterm = `searchterm-${i}`
+                var colset = `set-${i}`
+                var colobject = `object-${i}`
+                var colvariations = `variation-${i}`
+                var coltextures = `textures-${i}`
+                var colshape = `shape-${i}`
+                var colcategories = `categories-${i}`
+        
+                var row = `<tr>
+                                <td>${data[i].searchterm}</td>
+                                <td>${data[i].set}</td>
+                                <td>${data[i].object}</td>
+                                <td>${data[i].variation}</td>
+                                <td>${data[i].textures}</td>
+                                <td>${data[i].shape}</td>
+                                <td>${data[i].categories}</td>
+                           </tr>`
+                table.innerHTML += row
+            }
+        }
+        
+        </script>
+</body>
+</html>
